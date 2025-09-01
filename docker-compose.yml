@@ -1,0 +1,15 @@
+services:
+    postgres:
+        image: bitnami/postgresql:latest
+        ports:
+            - "5432:5432"
+        container_name: fsw-barber-postgres
+        environment:
+            - POSTGRES_USER= postgres
+            - POSTGRES_PASSWORD= postgres
+            - POSTGRES_DB= fsw-barber
+        volumes:
+            - postgres_data:/bitnami/postgresql
+
+volumes:
+    postgres_data:
