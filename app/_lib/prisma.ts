@@ -1,5 +1,3 @@
-import { withAccelerate } from "@prisma/extension-accelerate"
-
 import { PrismaClient } from "../generated/prisma"
 
 declare global {
@@ -8,7 +6,7 @@ declare global {
 }
 
 function createPrismaClient() {
-  return new PrismaClient().$extends(withAccelerate())
+  return new PrismaClient()
 }
 
 let prisma: ReturnType<typeof createPrismaClient>
