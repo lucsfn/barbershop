@@ -18,7 +18,7 @@ export function BarbershopItem({ barbershop }: BarbershopItemProps) {
         <div className="relative h-[159px] w-full">
           <Image
             fill
-            className="rounded-2xl object-cover"
+            className="rounded-xl object-cover"
             src={barbershop.imageUrl}
             alt={barbershop.name}
           />
