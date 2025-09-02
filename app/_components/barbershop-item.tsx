@@ -1,5 +1,6 @@
 import { StarIcon } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import { Barbershop } from "../generated/prisma"
 import { Badge } from "./ui/badge"
@@ -34,8 +35,8 @@ export function BarbershopItem({ barbershop }: BarbershopItemProps) {
         <div className="px-1 py-3">
           <h3 className="truncate font-semibold">{barbershop.name}</h3>
           <p className="truncate text-sm text-gray-400">{barbershop.address}</p>
-          <Button variant="secondary" className="mt-3 w-full">
-            Reservar
+          <Button variant="secondary" className="mt-3 w-full" asChild>
+            <Link href={`/barbershops/${barbershop.id}`}>Reservar</Link>
           </Button>
         </div>
       </CardContent>
