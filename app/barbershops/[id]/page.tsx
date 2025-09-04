@@ -4,7 +4,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { PhoneItem } from "@/app/_components/phone-item"
-import { ServiceItem } from "@/app/_components/service-item"
+import ServiceItem from "@/app/_components/service-item"
 import { SidebarSheet } from "@/app/_components/sidebar-sheet"
 import { Button } from "@/app/_components/ui/button"
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
@@ -87,7 +87,11 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         <div className="space-y-3">
           {barbershop.services.map((service) => (
-            <ServiceItem key={service.id} service={service} />
+            <ServiceItem
+              key={service.id}
+              barbershop={barbershop}
+              service={service}
+            />
           ))}
         </div>
       </div>

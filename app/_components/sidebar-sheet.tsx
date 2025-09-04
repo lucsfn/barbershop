@@ -3,27 +3,17 @@
 import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 
 import { quickSearchOptions } from "../_constants/quick-search"
+import SignInDialog from "./sign-in-dialog"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog"
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 
 export function SidebarSheet() {
   const { data } = useSession()
-
-  async function handleGoogleSignIn() {
-    await signIn("google")
-  }
 
   async function handleLogout() {
     await signOut()
@@ -57,26 +47,7 @@ export function SidebarSheet() {
                 </Button>
               </DialogTrigger>
               <DialogContent className="w-[90%]">
-                <DialogHeader>
-                  <DialogTitle>Faça login na plataforma</DialogTitle>
-                  <DialogDescription>
-                    Conecte-se usando sua conta do Google.
-                  </DialogDescription>
-                </DialogHeader>
-
-                <Button
-                  variant="outline"
-                  className="gap-1 font-bold"
-                  onClick={handleGoogleSignIn}
-                >
-                  <Image
-                    alt="Fazer login com o Google"
-                    src="/google.svg"
-                    width={18}
-                    height={18}
-                  />
-                  Google
-                </Button>
+                <SignInDialog />
               </DialogContent>
             </Dialog>
           </>
