@@ -46,7 +46,7 @@ export function SearchBar() {
             <FormItem className="w-full">
               <FormControl>
                 <Input
-                  placeholder="Faça sua busca..."
+                  placeholder="Busque uma barbearia ou serviço..."
                   {...field}
                   className="w-full"
                 />
