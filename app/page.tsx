@@ -1,5 +1,8 @@
+import { format } from "date-fns"
+import { ptBR } from "date-fns/locale"
 import Image from "next/image"
 import Link from "next/link"
+import { getServerSession } from "next-auth"
 
 import { BarbershopItem } from "./_components/barbershop-item"
 import { BookingItem } from "./_components/booking-item"
@@ -7,9 +10,11 @@ import { Header } from "./_components/header"
 import { SearchBar } from "./_components/search-bar"
 import { Button } from "./_components/ui/button"
 import { quickSearchOptions } from "./_constants/quick-search"
+import { authOptions } from "./_lib/auth"
 import { db } from "./_lib/prisma"
 
 export default async function Home() {
+  const session = await getServerSession(authOptions)
   const barbershops = await db.barbershop.findMany({})
   const popularBarbershops = await db.barbershop.findMany({
     orderBy: {
@@ -21,8 +26,18 @@ export default async function Home() {
     <div>
       <Header />
       <div className="p-5">
-        <h2 className="text-xl font-bold">Olá, Lucas!</h2>
-        <p>Segunda-feira, 01 de setembro.</p>
+        <h2 className="text-xl font-bold">
+          Olá, {session?.user ? session.user.name : "bem vindo"}!
+        </h2>
+        <p>
+          <span className="capitalize">
+            {format(new Date(), "EEEE, dd", { locale: ptBR })}
+          </span>
+          <span>&nbsp;de&nbsp;</span>
+          <span className="capitalize">
+            {format(new Date(), "MMMM", { locale: ptBR })}
+          </span>
+        </p>
 
         <div className="mt-6">
           <SearchBar />
