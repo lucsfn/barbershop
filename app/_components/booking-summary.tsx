@@ -16,7 +16,7 @@ export default function BookingSummary({
   selectedDate,
 }: BookingSummaryProps) {
   return (
-    <Card>
+    <Card className="mb-6 mt-3">
       <CardContent className="space-y-3 p-3">
         <div className="flex items-center justify-between">
           <h2 className="font-bold">{service.name}</h2>
