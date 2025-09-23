@@ -3,6 +3,7 @@
 import { isPast, isToday, set } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { useEffect, useMemo, useState } from "react"
 import { toast } from "sonner"
@@ -82,8 +83,9 @@ function getTimeList({ bookings, selectedDay }: GetTimeListProps) {
 }
 
 export default function ServiceItem({ service, barbershop }: ServiceItemProps) {
-  const [signInDialogIsOpen, setSignInDialogIsOpen] = useState(false)
   const { data } = useSession()
+  const router = useRouter()
+  const [signInDialogIsOpen, setSignInDialogIsOpen] = useState(false)
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined)
   const [selectedTime, setSelectedTime] = useState<string | undefined>(
     undefined,
@@ -142,7 +144,12 @@ export default function ServiceItem({ service, barbershop }: ServiceItemProps) {
         date: selectedDate,
       })
       handleBookingSheetOpenChange()
-      toast.success("Reserva criada com sucesso!")
+      toast.success("Reserva criada com sucesso!", {
+        action: {
+          label: "Ver agendamentos",
+          onClick: () => router.push("/bookings"),
+        },
+      })
     } catch (error) {
       console.error(error)
       toast.error("Erro ao criar reserva!")
