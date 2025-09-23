@@ -10,19 +10,15 @@ import { Header } from "./_components/header"
 import { SearchBar } from "./_components/search-bar"
 import { Button } from "./_components/ui/button"
 import { quickSearchOptions } from "./_constants/quick-search"
+import { getBarbershops } from "./_data/get-barbershops"
 import { getConfirmedBookings } from "./_data/get-confirmed-bookings"
+import { getPopularBarbershops } from "./_data/get-popular-barbershops"
 import { authOptions } from "./_lib/auth"
-import { db } from "./_lib/prisma"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
-  const barbershops = await db.barbershop.findMany({})
-  const popularBarbershops = await db.barbershop.findMany({
-    orderBy: {
-      name: "desc",
-    },
-  })
-
+  const barbershops = await getBarbershops()
+  const popularBarbershops = await getPopularBarbershops()
   const confirmedBookings = await getConfirmedBookings()
 
   return (
