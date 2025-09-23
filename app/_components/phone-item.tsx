@@ -9,8 +9,6 @@ interface PhoneItemProps {
   phone: string
 }
 
-// TODO: add a sucessful tooltip when user copy the pone
-
 export function PhoneItem({ phone }: PhoneItemProps) {
   function handleCopyPhoneClick(phone: string) {
     navigator.clipboard.writeText(phone)

@@ -194,7 +194,7 @@ export default function ServiceItem({ service, barbershop }: ServiceItemProps) {
                   Reservar
                 </Button>
 
-                <SheetContent className="px-0">
+                <SheetContent className="overflow-y-auto px-0">
                   <SheetHeader>
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>

@@ -35,8 +35,6 @@ import {
   SheetTrigger,
 } from "./ui/sheet"
 
-// TODO: receive bookings as props
-
 interface BookingItemProps {
   booking: Prisma.BookingGetPayload<{
     include: {
